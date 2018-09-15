@@ -7,11 +7,15 @@ package controllers;
 
 import views.ViewSuma;
 import models.ModelSuma;
+import extras.DataValidation;
+
 
 
 public class ControllerSuma {
     ViewSuma view_suma;
     ModelSuma model_suma;
+    DataValidation datavalidation = new DataValidation();
+ 
     
     public ControllerSuma(ViewSuma view_suma, ModelSuma model_suma){
         this.view_suma = view_suma;
@@ -30,19 +34,19 @@ public class ControllerSuma {
     }
     
     public void jbtn_Sumaclick(){
-        model_suma.setNumero1(Double.parseDouble(view_suma.jtf_Numero1.getText()));
+        model_suma.setNumero1(datavalidation.string2double(view_suma.jtf_Numero1.getText()));
         model_suma.setNumero2(Double.parseDouble(view_suma.jtf_Numero2.getText()));
         model_suma.suma();
         view_suma.jtf_Resultado.setText(String.valueOf(model_suma.getResultado()));
     }
     public void jbtn_restaclick(){
-        model_suma.setNumero1(Double.parseDouble(view_suma.jtf_Numero1.getText()));
+        model_suma.setNumero1(datavalidation.string2int(view_suma.jtf_Numero1.getText()));
         model_suma.setNumero2(Double.parseDouble(view_suma.jtf_Numero2.getText()));
         model_suma.resta();
         view_suma.jtf_Resultado.setText(String.valueOf(model_suma.getResultado()));
     }
     public void jbtn_divisionclick(){
-        model_suma.setNumero1(Double.parseDouble(view_suma.jtf_Numero1.getText()));
+        model_suma.setNumero1(datavalidation.string2float(view_suma.jtf_Numero1.getText()));
         model_suma.setNumero2(Double.parseDouble(view_suma.jtf_Numero2.getText()));
         model_suma.division();
         view_suma.jtf_Resultado.setText(String.valueOf(model_suma.getResultado()));
